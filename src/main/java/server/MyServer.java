@@ -43,7 +43,7 @@ public class MyServer {
             while (stillListening) {
                 Socket serverSocket = server.accept();
 
-                out = new PrintWriter(serverSocket.getOutputStream());
+                out = new PrintWriter(serverSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
 
                 String input;
