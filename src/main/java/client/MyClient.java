@@ -2,10 +2,12 @@ package client;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class MyClient {
     private Socket client;
     private PrintWriter out;
+    private Scanner scan;
 
     public MyClient(int portNumber) {
         start(portNumber);
@@ -19,10 +21,17 @@ public class MyClient {
         try {
             client = new Socket("localhost", portNumber);
             out = new PrintWriter(client.getOutputStream(), true);
+            scan = new Scanner(System.in);
 
-            out.println("Hello, server!");
-            out.println("How are you?");
-            out.println("exit");
+            while (true) {
+                String input = scan.nextLine();
+                if (input.equals("exit")) {
+                    out.println(input);
+                    break;
+                }
+
+                out.println(input);
+            }
 
             out.close();
             client.close();
