@@ -1,38 +1,34 @@
 package client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class MyClient {
     private Socket client;
-    private BufferedReader in;
+    private PrintWriter out;
 
     public MyClient(int portNumber) {
         start(portNumber);
     }
 
-    public void start(int portNumber) {
-        if (!initClient(portNumber)) {
-            try {
-                throw new IOException("Failed to init client");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        // continue here
-        startListening();
+    private void start(int portNumber) {
+        initClient(portNumber);
     }
 
-    public boolean initClient(int portNumber) {
+    private void initClient(int portNumber) {
         try {
-            client = new Socket("server", portNumber);
-            System.out.println("Client created");
-            return true;
+            client = new Socket("localhost", portNumber);
+            out = new PrintWriter(client.getOutputStream(), true);
+
+            out.println("Hello, server!");
+            out.println("How are you?");
+            out.println("exit");
+
+            out.close();
+            client.close();
         } catch (IOException e) {
             System.out.println("Client not created");
             e.printStackTrace();
-            return false;
         }
     }
 }
