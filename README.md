@@ -6,6 +6,6 @@ Might update to add a GUI.
 
 To run:
 
-navigate to the main folder with TCP.java
-run javac TCP.java in the terminal
-run java TCP in the terminal
+navigate to the main folder with TCP.java.
+run javac TCP.java in the terminal.
+run java TCP in the terminal.
