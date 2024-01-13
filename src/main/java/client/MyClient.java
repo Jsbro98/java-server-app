@@ -25,12 +25,12 @@ public class MyClient {
 
             while (true) {
                 String input = scan.nextLine();
-                if (input.equals("exit")) {
-                    out.println(input);
-                    break;
-                }
 
                 out.println(input);
+
+                if (input.equalsIgnoreCase("exit")) {
+                    break;
+                }
             }
 
             out.close();
