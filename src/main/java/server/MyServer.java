@@ -42,7 +42,6 @@ public class MyServer {
         try {
             while (stillListening) {
                 Socket serverSocket = server.accept();
-
                 out = new PrintWriter(serverSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
 
@@ -55,12 +54,12 @@ public class MyServer {
 
                     System.out.println("Echo: " + input);
                     out.println(input);
-
                 }
-            }
 
-            out.close();
-            in.close();
+                out.close();
+                in.close();
+                serverSocket.close();
+            }
 
         } catch (IOException e) {
             throw new RuntimeException("Something happened listening to the client", e);
