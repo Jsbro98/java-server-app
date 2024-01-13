@@ -5,19 +5,18 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class MyClient {
-    private Socket client;
-    private PrintWriter out;
-    private Scanner scan;
 
     public MyClient(int portNumber) {
         start(portNumber);
     }
 
     private void start(int portNumber) {
-        try {
-            client = new Socket("localhost", portNumber);
-            out = new PrintWriter(client.getOutputStream(), true);
-            scan = new Scanner(System.in);
+        try (
+               Socket client =new Socket("localhost",portNumber);
+            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            Scanner scan = new Scanner(System.in);
+                ){
 
             while (true) {
                 String input = scan.nextLine();
@@ -27,11 +26,11 @@ public class MyClient {
                 if (input.equalsIgnoreCase("exit")) {
                     break;
                 }
+
+                System.out.println(in.readLine());
             }
 
-            out.close();
-            client.close();
-        } catch (IOException e) {
+        } catch(IOException e){
             System.out.println("Client not created");
             e.printStackTrace();
         }
