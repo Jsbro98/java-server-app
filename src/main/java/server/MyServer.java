@@ -9,7 +9,7 @@ public class MyServer {
     private boolean stillListening = true;
 
     public MyServer(int portNumber) {
-        this.start(portNumber);
+        start(portNumber);
     }
 
     private void start(int portNumber) {
