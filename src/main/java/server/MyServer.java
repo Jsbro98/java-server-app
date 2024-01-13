@@ -30,6 +30,7 @@ public class MyServer {
         try  {
             this.server = new ServerSocket(portNumber);
             System.out.println("Server is created");
+            System.out.println("Type \"exit\" to stop");
             return true;
         } catch (IOException e) {
             System.out.println("Server failed to create");
