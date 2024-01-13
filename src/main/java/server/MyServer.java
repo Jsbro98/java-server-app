@@ -26,7 +26,7 @@ public class MyServer {
 
     private boolean initServer(int portNumber) {
         try {
-            this.server = new ServerSocket(portNumber);
+            server = new ServerSocket(portNumber);
             System.out.println("Server is created");
             System.out.println("Type \"exit\" to stop");
             return true;
@@ -50,8 +50,7 @@ public class MyServer {
                         break;
                     }
 
-                    System.out.println("Echo: " + input);
-                    out.println(input);
+                    out.println("Echo: " + input);
                 }
             } catch (IOException e) {
                 throw new RuntimeException("Something happened listening to the client", e);
