@@ -14,10 +14,6 @@ public class MyClient {
     }
 
     private void start(int portNumber) {
-        initClient(portNumber);
-    }
-
-    private void initClient(int portNumber) {
         try {
             client = new Socket("localhost", portNumber);
             out = new PrintWriter(client.getOutputStream(), true);
