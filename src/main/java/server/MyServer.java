@@ -27,7 +27,7 @@ public class MyServer {
     }
 
     private boolean initServer(int portNumber) {
-        try  {
+        try {
             this.server = new ServerSocket(portNumber);
             System.out.println("Server is created");
             System.out.println("Type \"exit\" to stop");
@@ -40,11 +40,10 @@ public class MyServer {
     }
 
     private void startListening() {
-        try {
-            while (stillListening) {
-                Socket serverSocket = server.accept();
-                out = new PrintWriter(serverSocket.getOutputStream(), true);
-                in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+        while (stillListening) {
+            try (Socket serverSocket = server.accept();
+                 PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+                 BufferedReader in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()))) {
 
                 String input;
                 while ((input = in.readLine()) != null) {
@@ -56,16 +55,12 @@ public class MyServer {
                     System.out.println("Echo: " + input);
                     out.println(input);
                 }
-
-                out.close();
-                in.close();
-                serverSocket.close();
+            } catch (IOException e) {
+                throw new RuntimeException("Something happened listening to the client", e);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException("Something happened listening to the client", e);
         }
     }
+
 
     private void stopServer() {
         try {
