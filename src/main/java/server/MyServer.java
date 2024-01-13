@@ -15,12 +15,6 @@ public class MyServer {
     private void start(int portNumber) {
         if (initServer(portNumber)) {
             startListening();
-        } else {
-            try {
-                throw new IOException("Server was not created");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
