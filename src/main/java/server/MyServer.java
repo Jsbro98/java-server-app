@@ -45,7 +45,6 @@ public class MyServer {
 
                     if (input.equalsIgnoreCase("exit")) {
                         stopServer();
-                        break;
                     }
 
                     out.println("Echo: " + input);
