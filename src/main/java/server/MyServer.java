@@ -6,8 +6,6 @@ import java.net.Socket;
 
 public class MyServer {
     private ServerSocket server;
-    private PrintWriter out;
-    private BufferedReader in;
     private boolean stillListening = true;
 
     public MyServer(int portNumber) {
