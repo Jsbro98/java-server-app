@@ -8,6 +8,5 @@ public class TCP {
         }).start();
 
         MyClient client = new MyClient(8080);
-
     }
 }
